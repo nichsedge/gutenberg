@@ -1,0 +1,7 @@
+*.epub
+*.txt
+*.html
+books
+
+scrape/config.ini
+scrape/data
