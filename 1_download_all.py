@@ -26,32 +26,20 @@ def get_urls_from_html(content):
     # parse the document as best we can
     soup = BeautifulSoup(html, 'html.parser')
 
-    nietzsche_section = None
-    for h2_tag in soup.find_all('h2'):
-        if "Nietzsche, Friedrich Wilhelm" in h2_tag.text:
-            nietzsche_section = h2_tag
-            break
-
     res = []
-    if nietzsche_section:
-        # Find the next <ul> sibling after the Nietzsche section
-        ul_tag = nietzsche_section.find_next_sibling('ul')
-        if ul_tag:
-            for li_tag in ul_tag.find_all('li'):
-                a_tag = li_tag.find('a')
-                if a_tag:
-                    href = a_tag.get('href')
-                    if href and href.startswith('/ebooks/'):
-                        match = re.search(r'/ebooks/(\d+)', href)
-                        if match:
-                            ebook_id = match.group(1)
-                            title = a_tag.text.strip()
-                            # Extract language from title, e.g., "Title (English)"
-                            lang_match = re.search(r'\((.*?)\)', title)
-                            language = lang_match.group(1) if lang_match else "Unknown"
-                            # Remove language from title for cleaner metadata
-                            clean_title = re.sub(r'\s*\(.*\)', '', title).strip()
-                            res.append({'id': ebook_id, 'title': clean_title, 'language': language})
+    for a_tag in soup.find_all('a', href=re.compile(r'^/ebooks/')):
+        href = a_tag.get('href')
+        if href:
+            match = re.search(r'/ebooks/(\d+)', href)
+            if match:
+                ebook_id = match.group(1)
+                title = a_tag.text.strip()
+                # Extract language from title, e.g., "Title (English)"
+                lang_match = re.search(r'\((.*?)\)', title)
+                language = lang_match.group(1) if lang_match else "English" # Default to English if not specified
+                # Remove language from title for cleaner metadata
+                clean_title = re.sub(r'\s*\(.*\)', '', title).strip()
+                res.append({'id': ebook_id, 'title': clean_title, 'language': language})
     return res
 
 # download one book from project gutenberg
