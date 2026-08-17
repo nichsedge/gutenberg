@@ -85,7 +85,7 @@ def calculate_basic_statistics(book_data: Dict[str, Any]) -> Dict[str, Any]:
 
     return {
         "title": book_data.get("title", "Unknown"),
-        "author": book_data.get("author", "Friedrich Nietzsche"),
+        "author": book_data.get("author", "Unknown Author"),
         "total_words": total_words,
         "unique_words": unique_words,
         "total_characters": total_characters,

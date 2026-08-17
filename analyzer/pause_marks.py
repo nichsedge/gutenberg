@@ -6,7 +6,7 @@ from analyzer.nltk_helper import tokenize_words
 def analyze_pause_marks(book_data: Dict[str, Any]) -> Dict[str, Any]:
     """
     Analyze punctuation, rhetorical pauses, aphoristic cadence, and syntactic rhythm.
-    Critically informative for Nietzsche's dynamic and dramatic prose style.
+    Critically informative for measuring stylistic dynamics, authorial voice, and rhetorical cadence.
     """
     clean_text = book_data["clean_text"]
     words = tokenize_words(clean_text)

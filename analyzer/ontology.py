@@ -3,7 +3,7 @@ from typing import Dict, Any, List
 from collections import Counter
 from analyzer.nltk_helper import tokenize_words
 
-# Curated Philosophical Ontology for Nietzsche & 19th Century Thought
+# Curated Conceptual & Philosophical Ontology for Literary and Textual Analysis
 PHILOSOPHICAL_ONTOLOGY = {
     "Will to Power": {
         "category": "Metaphysics / Psychology",

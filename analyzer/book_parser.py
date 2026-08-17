@@ -15,8 +15,64 @@ from ebooklib import epub
 
 logger = logging.getLogger(__name__)
 
-# Curated catalog of Nietzsche's most influential books on Gutenberg
-NIETZSCHE_CATALOG = {
+# Curated catalog of classic literature and philosophy on Project Gutenberg
+FEATURED_CATALOG = {
+    "1342": {
+        "id": "1342",
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "year": "1813",
+        "category": "Classic Literature / Romance & Satire",
+        "gutenberg_url": "https://www.gutenberg.org/cache/epub/1342/pg1342.txt",
+    },
+    "84": {
+        "id": "84",
+        "title": "Frankenstein; Or, The Modern Prometheus",
+        "author": "Mary Wollstonecraft Shelley",
+        "year": "1818",
+        "category": "Gothic Fiction / Science Fiction",
+        "gutenberg_url": "https://www.gutenberg.org/cache/epub/84/pg84.txt",
+    },
+    "11": {
+        "id": "11",
+        "title": "Alice's Adventures in Wonderland",
+        "author": "Lewis Carroll",
+        "year": "1865",
+        "category": "Children's Literature / Fantasy",
+        "gutenberg_url": "https://www.gutenberg.org/cache/epub/11/pg11.txt",
+    },
+    "2701": {
+        "id": "2701",
+        "title": "Moby Dick; or, The Whale",
+        "author": "Herman Melville",
+        "year": "1851",
+        "category": "Adventure / Philosophical Fiction",
+        "gutenberg_url": "https://www.gutenberg.org/cache/epub/2701/pg2701.txt",
+    },
+    "1661": {
+        "id": "1661",
+        "title": "The Adventures of Sherlock Holmes",
+        "author": "Arthur Conan Doyle",
+        "year": "1892",
+        "category": "Mystery / Detective Fiction",
+        "gutenberg_url": "https://www.gutenberg.org/cache/epub/1661/pg1661.txt",
+    },
+    "174": {
+        "id": "174",
+        "title": "The Picture of Dorian Gray",
+        "author": "Oscar Wilde",
+        "year": "1890",
+        "category": "Philosophical Fiction / Gothic",
+        "gutenberg_url": "https://www.gutenberg.org/cache/epub/174/pg174.txt",
+    },
+    "1497": {
+        "id": "1497",
+        "title": "The Republic",
+        "author": "Plato",
+        "year": "c. 375 BC",
+        "category": "Classical Philosophy / Political Philosophy",
+        "gutenberg_url": "https://www.gutenberg.org/cache/epub/1497/pg1497.txt",
+    },
     "1998": {
         "id": "1998",
         "title": "Thus Spake Zarathustra",
@@ -33,55 +89,16 @@ NIETZSCHE_CATALOG = {
         "category": "Philosophy / Critique of Morality",
         "gutenberg_url": "https://www.gutenberg.org/cache/epub/4363/pg4363.txt",
     },
-    "19322": {
-        "id": "19322",
-        "title": "The Antichrist",
-        "author": "Friedrich Wilhelm Nietzsche",
-        "year": "1888",
-        "category": "Philosophy / Critique of Religion",
-        "gutenberg_url": "https://www.gutenberg.org/cache/epub/19322/pg19322.txt",
-    },
-    "52319": {
-        "id": "52319",
-        "title": "The Twilight of the Idols",
-        "author": "Friedrich Wilhelm Nietzsche",
-        "year": "1889",
-        "category": "Philosophy / Aphorisms & Polemic",
-        "gutenberg_url": "https://www.gutenberg.org/cache/epub/52319/pg52319.txt",
-    },
-    "38145": {
-        "id": "38145",
-        "title": "The Genealogy of Morals",
-        "author": "Friedrich Wilhelm Nietzsche",
-        "year": "1887",
-        "category": "Philosophy / Moral Psychology",
-        "gutenberg_url": "https://www.gutenberg.org/cache/epub/38145/pg38145.txt",
-    },
-    "51710": {
-        "id": "51710",
-        "title": "The Birth of Tragedy",
-        "author": "Friedrich Wilhelm Nietzsche",
-        "year": "1872",
-        "category": "Aesthetics / Greek Tragedy & Culture",
-        "gutenberg_url": "https://www.gutenberg.org/cache/epub/51710/pg51710.txt",
-    },
-    "39855": {
-        "id": "39855",
-        "title": "Ecce Homo",
-        "author": "Friedrich Wilhelm Nietzsche",
-        "year": "1888",
-        "category": "Autobiography / Philosophy",
-        "gutenberg_url": "https://www.gutenberg.org/cache/epub/39855/pg39855.txt",
-    },
-    "52881": {
-        "id": "52881",
-        "title": "Human, All Too Human (Part I)",
-        "author": "Friedrich Wilhelm Nietzsche",
-        "year": "1878",
-        "category": "Philosophy / Free Spirit Series",
-        "gutenberg_url": "https://www.gutenberg.org/cache/epub/52881/pg52881.txt",
+    "5200": {
+        "id": "5200",
+        "title": "Metamorphosis",
+        "author": "Franz Kafka",
+        "year": "1915",
+        "category": "Modernist Fiction / Absurdist",
+        "gutenberg_url": "https://www.gutenberg.org/cache/epub/5200/pg5200.txt",
     },
 }
+NIETZSCHE_CATALOG = FEATURED_CATALOG
 
 
 class BookParser:
@@ -91,11 +108,11 @@ class BookParser:
 
     def get_catalog(self) -> List[Dict[str, Any]]:
         """Return list of curated + locally cached books."""
-        catalog = list(NIETZSCHE_CATALOG.values())
+        catalog = list(FEATURED_CATALOG.values())
         for p in self.cache_dir.iterdir():
             if p.suffix in {".txt", ".epub"}:
                 book_id = p.stem.removeprefix("pg")
-                if book_id not in NIETZSCHE_CATALOG:
+                if book_id not in FEATURED_CATALOG:
                     catalog.append({
                         "id": book_id,
                         "title": f"Custom Book ({p.name})",
@@ -192,8 +209,8 @@ class BookParser:
         return text.strip()
 
     def _extract_metadata(self, text: str, book_id: Optional[str]) -> Dict[str, str]:
-        if book_id and book_id in NIETZSCHE_CATALOG:
-            meta = NIETZSCHE_CATALOG[book_id]
+        if book_id and book_id in FEATURED_CATALOG:
+            meta = FEATURED_CATALOG[book_id]
             return {"title": meta["title"], "author": meta["author"], "year": meta.get("year", "")}
 
         title = "Unknown Work"

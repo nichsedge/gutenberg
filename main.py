@@ -7,7 +7,7 @@ def main():
     parser.add_argument("--server", action="store_true", help="Launch the interactive web application server")
     parser.add_argument("--port", type=int, default=8455, help="Web server port (default 8455)")
     parser.add_argument("--host", type=str, default="0.0.0.0", help="Web server host (default 0.0.0.0)")
-    parser.add_argument("--book", type=str, default="1998", help="Book ID or path (default 1998: Thus Spake Zarathustra)")
+    parser.add_argument("--book", type=str, default="1342", help="Project Gutenberg Book ID (e.g. 1342, 84, 11, 1998) or local EPUB/TXT path")
     parser.add_argument("--stats", action="store_true", help="Print Basic Statistics")
     parser.add_argument("--freq", action="store_true", help="Print Top Word Frequencies")
     parser.add_argument("--ontology", action="store_true", help="Print Philosophical Concept Mentions")
