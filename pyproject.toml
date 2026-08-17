@@ -1,7 +1,7 @@
 [project]
 name = "gutenberg"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.2.0"
+description = "Computational literary & philosophical corpus analysis platform for Project Gutenberg ebooks"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -18,9 +18,16 @@ dependencies = [
     "python-multipart>=0.0.32",
     "requests>=2.32.4",
     "scikit-learn>=1.9.0",
+    "scipy>=1.15.0",
     "uvicorn>=0.52.3",
     "wordcloud>=1.9.6",
 ]
 
 [project.scripts]
+gutenberg = "main:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
 

@@ -5,7 +5,8 @@ from analyzer.engine import EbookAnalysisEngine
 def main():
     parser = argparse.ArgumentParser(description="Ebook Analysis Engine — QuranAnalysis-style literary NLP suite")
     parser.add_argument("--server", action="store_true", help="Launch the interactive web application server")
-    parser.add_argument("--port", type=int, default=8000, help="Web server port (default 8000)")
+    parser.add_argument("--port", type=int, default=8455, help="Web server port (default 8455)")
+    parser.add_argument("--host", type=str, default="0.0.0.0", help="Web server host (default 0.0.0.0)")
     parser.add_argument("--book", type=str, default="1998", help="Book ID or path (default 1998: Thus Spake Zarathustra)")
     parser.add_argument("--stats", action="store_true", help="Print Basic Statistics")
     parser.add_argument("--freq", action="store_true", help="Print Top Word Frequencies")
@@ -18,8 +19,8 @@ def main():
 
     if args.server or len(sys.argv) == 1:
         import uvicorn
-        print(f"🚀 Launching Ebook Analysis Web Server at http://localhost:{args.port}")
-        uvicorn.run("web.server:app", host="0.0.0.0", port=args.port, reload=True)
+        print(f"🚀 Launching Ebook Analysis Web Server at http://{args.host}:{args.port}")
+        uvicorn.run("web.server:app", host=args.host, port=args.port, reload=True)
         return
 
     engine = EbookAnalysisEngine()

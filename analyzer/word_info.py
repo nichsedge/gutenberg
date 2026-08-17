@@ -2,7 +2,7 @@ import math
 import re
 from typing import Dict, Any, List
 from collections import Counter
-from analyzer.nltk_helper import tokenize_words, tag_pos_tokens, simple_lemmatize, STOPWORDS
+from analyzer.nltk_helper import tokenize_words, tag_pos_tokens, lemmatize, STOPWORDS
 from analyzer.basic_stats import count_syllables
 
 def get_word_information(book_data: Dict[str, Any], query_word: str) -> Dict[str, Any]:
@@ -88,7 +88,7 @@ def get_word_information(book_data: Dict[str, Any], query_word: str) -> Dict[str
     return {
         "word": word,
         "found": True,
-        "lemma": simple_lemmatize(word),
+        "lemma": lemmatize(word, pos_counts.most_common(1)[0][0] if pos_counts else "NOUN"),
         "syllables": count_syllables(word),
         "total_occurrences": word_count,
         "rank": rank,

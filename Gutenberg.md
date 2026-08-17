@@ -27,7 +27,7 @@ A comprehensive computational literary and philosophical corpus analysis platfor
 ### Launch Web Dashboard
 ```bash
 uv run main.py --server
-# Open http://localhost:8000
+# Open http://localhost:8455
 ```
 
 ### CLI Analysis Commands

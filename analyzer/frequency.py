@@ -1,7 +1,7 @@
 import math
 from typing import Dict, Any, List, Optional
 from collections import Counter
-from analyzer.nltk_helper import tokenize_words, tag_pos_tokens, simple_lemmatize, STOPWORDS
+from analyzer.nltk_helper import tokenize_words, tag_pos_tokens, lemmatize, STOPWORDS
 
 def calculate_word_frequencies(
     book_data: Dict[str, Any],
@@ -19,7 +19,13 @@ def calculate_word_frequencies(
     words = tokenize_words(clean_text)
     total_tokens = len(words)
     if total_tokens == 0:
-        return {"total_words": 0, "frequencies": []}
+        return {
+            "total_corpus_words": 0,
+            "unique_filtered_words": 0,
+            "total_chapters": max(1, len(chapters)),
+            "pos_distribution": [],
+            "frequencies": [],
+        }
 
     # POS tagging sample or full
     tagged_tokens = tag_pos_tokens(words)
@@ -61,7 +67,7 @@ def calculate_word_frequencies(
 
         filtered_items.append({
             "word": word,
-            "lemma": simple_lemmatize(word),
+            "lemma": lemmatize(word, primary_pos),
             "count": count,
             "tf": round(tf, 6),
             "tf_percentage": round(tf * 100, 4),
