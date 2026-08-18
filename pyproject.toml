@@ -3,7 +3,30 @@ name = "gutenberg"
 version = "0.2.0"
 description = "Computational literary & philosophical corpus analysis platform for Project Gutenberg ebooks"
 readme = "README.md"
+license = "MIT"
 requires-python = ">=3.12"
+keywords = [
+    "gutenberg",
+    "nlp",
+    "corpus-linguistics",
+    "digital-humanities",
+    "text-analysis",
+    "computational-linguistics",
+    "fastapi",
+    "concordance",
+    "sentiment-analysis",
+    "collocation",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Text Processing :: Linguistic",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
 dependencies = [
     "beautifulsoup4>=4.13.4",
     "ebooklib>=0.20",
@@ -23,6 +46,11 @@ dependencies = [
     "wordcloud>=1.9.6",
 ]
 
+[project.urls]
+Homepage = "https://github.com/nichsedge/gutenberg"
+Repository = "https://github.com/nichsedge/gutenberg"
+"Bug Tracker" = "https://github.com/nichsedge/gutenberg/issues"
+
 [project.scripts]
 gutenberg = "main:main"
 
@@ -30,4 +58,5 @@ gutenberg = "main:main"
 dev = [
     "pytest>=9.1.1",
 ]
+
 

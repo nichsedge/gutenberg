@@ -1,5 +1,10 @@
 # 🏛️ Gutenberg Ebook Analysis Engine
 
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Framework: FastAPI](https://img.shields.io/badge/Framework-FastAPI-009688.svg)](https://fastapi.tiangolo.com)
+[![Package Manager: uv](https://img.shields.io/badge/uv-managed-purple.svg)](https://github.com/astral-sh/uv)
+
 A comprehensive computational literary and corpus analysis platform inspired by [QuranAnalysis.com](https://qurananalysis.com/), built for analyzing **any book or text from Project Gutenberg**, custom EPUB, or TXT file.
 
 Explore classic literature, philosophy, drama, and essays—from Jane Austen, Mary Shelley, and Lewis Carroll to Herman Melville, Friedrich Nietzsche, Franz Kafka, and Plato—or fetch any Project Gutenberg ID directly on the fly.
